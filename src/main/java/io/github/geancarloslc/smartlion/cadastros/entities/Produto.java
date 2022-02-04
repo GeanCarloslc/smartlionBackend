@@ -1,4 +1,6 @@
 package io.github.geancarloslc.smartlion.cadastros.entities;
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,11 +18,17 @@ public class Produto implements Serializable {
     @Column(name = "de_marca")
     private String deMarca;
 
-    @Column(name = "qt_produto")
+	@Column(name = "cd_categoria")
+	private String cdCategoria;
+
+	@Column(name = "qt_produto")
     private Integer qtProduto;
 
 	@Column(name = "vl_unitario")
 	private Double vlUnitario;
+
+	@Formula("(select a.de_categoria from categorias a where a.id = cd_categoria)")
+	private String deCategoria;
 
 	@Column(name = "dt_atualizacao")
 	private Date dtAtualizacao;
@@ -66,6 +74,14 @@ public class Produto implements Serializable {
 		return vlUnitario;
 	}
 
+	public String getCdCategoria() {
+		return cdCategoria;
+	}
+
+	public void setCdCategoria(String cdCategoria) {
+		this.cdCategoria = cdCategoria;
+	}
+
 	public void setVlUnitario(Double vlUnitario) {
 		this.vlUnitario = vlUnitario;
 	}
@@ -74,12 +90,21 @@ public class Produto implements Serializable {
 		this.dtAtualizacao = dtAtualizacao;
 	}
 
+	public String getDeCategoria() {
+		return deCategoria;
+	}
+
+	public void setDeCategoria(String deCategoria) {
+		this.deCategoria = deCategoria;
+	}
+
 	@Override
 	public String toString() {
 		return "Produto{" +
 				"id='" + id + '\'' +
 				", deProduto='" + deProduto + '\'' +
 				", deMarca='" + deMarca + '\'' +
+				", cdCategoria='" + cdCategoria + '\'' +
 				", qtProduto=" + qtProduto +
 				", vlUnitario=" + vlUnitario +
 				", dtAtualizacao=" + dtAtualizacao +

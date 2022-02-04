@@ -3,6 +3,7 @@ package io.github.geancarloslc.smartlion.cadastros.resources;
 
 
 import io.github.geancarloslc.smartlion.cadastros.DAO.ProdutoDAO;
+import io.github.geancarloslc.smartlion.cadastros.entities.Categoria;
 import io.github.geancarloslc.smartlion.cadastros.entities.Produto;
 import io.github.geancarloslc.smartlion.cadastros.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -20,15 +21,15 @@ public class ProdutoResource {
 
     private final ProdutoDAO produtoDAO;
 
-//    @GetMapping("/populaProdutos")
-//    public ResponseEntity<List<Produto>> getAllProdutos () {
-//        try {
-//            List<Produto> produtos = produtoController.findAllProdutos();
-//            return new ResponseEntity<>(produtos, HttpStatus.OK);
-//        }catch (UserNotFoundException e){
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @GetMapping("/populaCategoria")
+    public ResponseEntity<List<Categoria>> populaCategoria () {
+        try {
+            List<Categoria> categoria = produtoDAO.populaCategoria();
+            return new ResponseEntity<>(categoria, HttpStatus.OK);
+        }catch (UserNotFoundException e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("/pesquisaFiltrosProdutos")
     public ResponseEntity<List<Produto>> pesquisaFiltrosProdutos(@RequestBody Produto produtoFiltro) {

@@ -1,5 +1,6 @@
 package io.github.geancarloslc.smartlion.cadastros.DAO;
 
+import io.github.geancarloslc.smartlion.cadastros.entities.Categoria;
 import io.github.geancarloslc.smartlion.cadastros.entities.Produto;
 import io.github.geancarloslc.smartlion.cadastros.repositorys.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,16 +33,6 @@ public class ProdutoDAO {
 	public Produto addProduto(Produto produto) {
 
         produto.setDtAtualizacao(new Date());
-
-//        List<Produto> lista = getSession().createCriteria(Produto.class).list(); Buscando todos os dados da class
-//        Produto novo = new Produto();
-
-//        novo.setDeProduto("Hibernate");
-//        getSession().save(novo); Salvando no banco
-
-//        Query query = getSession().createQuery("from Produto where id = 2");
-//       List<Produto> lista = query.getResultList();// Buscando dados de Query
-
         return produtoRepository.save(produto);
     }
 
@@ -90,6 +81,13 @@ public class ProdutoDAO {
 
     public void excluirProduto(String id){
         produtoRepository.deleteProdutoById(id);
+    }
+
+    public List<Categoria> populaCategoria(){
+        Query query = getSession().createQuery("from Categoria");
+        List<Categoria> listaCategorias = query.getResultList();
+
+        return listaCategorias;
     }
 }
 
