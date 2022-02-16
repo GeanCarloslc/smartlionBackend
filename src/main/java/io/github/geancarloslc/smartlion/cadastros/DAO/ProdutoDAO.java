@@ -42,15 +42,21 @@ public class ProdutoDAO {
         String sQuerySelect = "from Produto ";
         String sQuery = "";
 
-//        if (produtoFiltro.getDeProduto() != null && !produtoFiltro.getDeProduto().equals("")){
-//            qtRestritions ++;
-//            sQuery += "where lower(deProduto) LIKE  lower('" + produtoFiltro.getDeProduto().trim() + "%');";
-//        }
-//
-//        if (produtoFiltro.getNuCpfCnpj() != null && !produtoFiltro.getNuCpfCnpj().equals("")){
-//            qtRestritions ++;
-//            sQuery += "where lower(nuCpfCnpj) LIKE  lower('" + produtoFiltro.getNuCpfCnpj().trim() + "%');";
-//        }
+        if (produtoFiltro.getId() != null && !produtoFiltro.getId().equals("")){
+            qtRestritions ++;
+            sQuery += "where lower(id) LIKE  lower('" + produtoFiltro.getId().trim() + "%');";
+        }
+
+        if (produtoFiltro.getDeProduto() != null && !produtoFiltro.getDeProduto().equals("")){
+            qtRestritions ++;
+            sQuery += "where lower(deProduto) LIKE  lower('" + produtoFiltro.getDeProduto().trim() + "%');";
+        }
+
+        if (produtoFiltro.getDeMarca() != null && !produtoFiltro.getDeMarca().equals("")){
+            qtRestritions ++;
+            sQuery += "where lower(deMarca) LIKE  lower('" + produtoFiltro.getDeMarca().trim() + "%');";
+        }
+
 
             sQuery = validaQuery(sQuery, qtRestritions);
             sQuerySelect += sQuery;
