@@ -3,6 +3,7 @@ import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Date;
 
 @Entity
@@ -26,6 +27,9 @@ public class Produto implements Serializable {
 
 	@Column(name = "vl_unitario")
 	private Double vlUnitario;
+
+	@Column(name = "im_produto")
+	private Base64 imProduto;
 
 	@Formula("(select a.de_categoria from categorias a where a.id = cd_categoria)")
 	private String deCategoria;
@@ -96,6 +100,14 @@ public class Produto implements Serializable {
 
 	public void setDeCategoria(String deCategoria) {
 		this.deCategoria = deCategoria;
+	}
+
+	public Base64 getImProduto() {
+		return imProduto;
+	}
+
+	public void setImProduto(Base64 imProduto) {
+		this.imProduto = imProduto;
 	}
 
 	@Override
