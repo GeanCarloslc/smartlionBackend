@@ -41,6 +41,16 @@ public class ProdutoResource {
         }
     }
 
+    @PostMapping("/pesquisaProduto")
+    public ResponseEntity<Produto> pesquisaProduto(@RequestBody String codigoProduto) {
+        try {
+            Produto produtos = produtoDAO.pesquisaProduto(codigoProduto);
+            return new ResponseEntity(produtos, HttpStatus.OK);
+        }catch (UserNotFoundException e){
+            return null;
+        }
+    }
+
     @PostMapping("/salvarProduto")
     public ResponseEntity<Produto> addProduto(@RequestBody Produto produto) {
             try {

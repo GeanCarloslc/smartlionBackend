@@ -66,6 +66,30 @@ public class ProdutoDAO {
         return lista;
     }
 
+    public Produto pesquisaProduto(String codigoProduto) {
+
+        Integer qtRestritions = 0;
+        String sQuerySelect = "from Produto ";
+        String sQuery = "";
+
+        if (codigoProduto != null && !codigoProduto.equals("")){
+            qtRestritions ++;
+            sQuery += "where lower(id) = '" + codigoProduto.trim() + "'";
+        }
+
+        sQuerySelect += sQuery;
+        Query query = getSession().createQuery(sQuerySelect);
+        List<Produto> resultList = query.getResultList();
+
+        if(resultList != null){
+            Produto produto = resultList.get(0);
+            return produto;
+        } else {
+            return null;
+        }
+
+    }
+
     public String validaQuery(String query, Integer qtRestritions){
         if(qtRestritions > 1){
             int qtCharFirstQuery = query.indexOf(";");
