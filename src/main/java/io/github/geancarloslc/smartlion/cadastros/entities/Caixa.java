@@ -14,9 +14,6 @@ public class Caixa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-    @Column(name = "de_produto")
-    private String deProduto;
-
 	@Column(name = "dt_atualizacao")
 	private Date dtAtualizacao;
 
@@ -24,12 +21,8 @@ public class Caixa implements Serializable {
 		return id;
 	}
 
-	public String getDeProduto() {
-		return deProduto;
-	}
-
-	public void setDeProduto(String deProduto) {
-		this.deProduto = deProduto;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Date getDtAtualizacao() {

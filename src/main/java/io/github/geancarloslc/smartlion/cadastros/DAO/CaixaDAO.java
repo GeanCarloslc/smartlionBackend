@@ -35,21 +35,18 @@ public class CaixaDAO {
     private final CaixaRepository caixaRepository;
     private final CaixaItensRepository caixaItensRepository;
 
-	public void finalizaPedidoCaixa(List<CaixaItens> listaItensCaixa) {
+	public CaixaItens finalizaPedidoCaixa(List<CaixaItens> listaItensCaixa) {
 
         Caixa caixa = new Caixa();
         caixa.setDtAtualizacao(new Date());
         Caixa caixaSalvo = caixaRepository.save(caixa);
-
+        CaixaItens caixaItensSalvos = new CaixaItens();
         for (CaixaItens caixaItens : listaItensCaixa) {
             caixaItens.setIdCaixa(caixaSalvo.getId());
-            caixaItensRepository.save(caixaItens);
+            caixaItensSalvos = caixaItensRepository.save(caixaItens);
+
         }
-
-
-//       caixa.setDtAtualizacao(new Date());
-//       caixaRepository.save(caixa);
-
+        return caixaItensSalvos;
     }
 
 }

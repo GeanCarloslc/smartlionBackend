@@ -26,9 +26,8 @@ public class CaixaResource {
     @PostMapping("/finalizaPedidoCaixa")
     public ResponseEntity<CaixaItens> finalizaPedidoCaixa(@RequestBody List<CaixaItens> listaItensCaixa ) {
             try {
-                 caixaDAO.finalizaPedidoCaixa(listaItensCaixa);
-//                return new ResponseEntity<>(newProduto, HttpStatus.CREATED);
-                return null;
+                 CaixaItens caixaItens = caixaDAO.finalizaPedidoCaixa(listaItensCaixa);
+                 return new ResponseEntity<>(caixaItens, HttpStatus.CREATED);
             }catch (UserNotFoundException e){
                 return null;
             }
