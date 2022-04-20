@@ -23,8 +23,17 @@ public class CaixaItens implements Serializable {
 	@Column(name = "qt_produto")
 	private Double qtProduto;
 
+	@Column(name = "vl_total_item")
+	private Double vlTotalItem;
+
 	@Formula("(select a.de_produto from produtos a where a.id = id_produto)")
 	private String deProduto;
+
+	@Formula("(select a.de_marca from produtos a where a.id = id_produto)")
+	private String deMarca;
+
+	@Formula("(select a.vl_unitario from produtos a where a.id = id_produto)")
+	private Double vlUnitario;
 
 	public Integer getId() {
 		return id;
@@ -65,4 +74,30 @@ public class CaixaItens implements Serializable {
 	public void setDeProduto(String deProduto) {
 		this.deProduto = deProduto;
 	}
+
+	public String getDeMarca() {
+		return deMarca;
+	}
+
+	public void setDeMarca(String deMarca) {
+		this.deMarca = deMarca;
+	}
+
+	public Double getVlTotalItem() {
+		return vlTotalItem;
+	}
+
+	public void setVlTotalItem(Double vlTotalItem) {
+		this.vlTotalItem = vlTotalItem;
+	}
+
+	public Double getVlUnitario() {
+		return vlUnitario;
+	}
+
+	public void setVlUnitario(Double vlUnitario) {
+		this.vlUnitario = vlUnitario;
+	}
+
+
 }
